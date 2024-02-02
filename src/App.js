@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import ItemListPage from "./modules/itemlist/pages/item-list_page";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./modules/navbar/components/navbar_section";
+import { useReducer } from "react";
+import ItemReducer from "./modules/itemlist/reducer/reducer";
+import { ItemInit } from "./modules/itemlist/reducer/reducerInit";
 
 function App() {
+  const [state, dispatch] = useReducer(ItemReducer, ItemInit);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Navbar state={state} dispatch={dispatch}/>
+      <Routes>
+        <Route path="/" element={<ItemListPage />} exact />
+      </Routes>
     </div>
   );
 }
