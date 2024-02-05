@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import classes from "../styles/navbar.module.css";
 
-const Navbar = ({ state, dispatch}) => {
+const Navbar = ({ state, dispatch }) => {
   const overlay = () => {
     dispatch({ type: "modalCart", data: true });
   };
