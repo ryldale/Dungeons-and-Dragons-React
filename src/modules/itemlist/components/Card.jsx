@@ -32,7 +32,7 @@ const Card = ({ state, dispatch, item}) => {
               <button onClick={decrement}>-</button>
             </div>
             <div>
-              <label for="quantity">Quantity:</label>
+              <label htmlFor="quantity">Quantity:</label>
               <input
                 type="number"
                 min="0"
