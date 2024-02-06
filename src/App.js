@@ -14,15 +14,29 @@ function App() {
   // useReducer Parent - The state and dispatch must be pass along the children
   const [state, dispatch] = useReducer(ItemReducer, ItemInit);
   const fetchData = async () => {
-    axios.get(url)
-    .then((response) => {
-      const equipmentData = response.data.equipment;
-      console.log(equipmentData);
-      dispatch({ type: "itemData", data: equipmentData })
-    })
-    .catch((error) => {
-      console.log(error.response);
-    });
+    axios
+      .get(url)
+      .then((response) => {
+        const equipmentData = response.data.equipment;
+        console.log(equipmentData);
+
+        // Promise.all(
+        //   equipmentData.map(async (equipment) => {
+        //     axios.get(equipment.url).then((response) => {
+        //       return {
+        //         ...equipment,
+        //         cost: response.data.cost,
+        //       };
+        //     });
+        //   })
+        // ).catch((error) => {
+        //   console.log(error.response);
+        // });
+        dispatch({ type: "itemData", data: equipmentData });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   useEffect(() => {
