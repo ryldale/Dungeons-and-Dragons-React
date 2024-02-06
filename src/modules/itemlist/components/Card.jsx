@@ -1,5 +1,7 @@
 import { useState } from "react";
 import classes from "../styles/Card.module.css";
+import axios from "axios";
+import { url } from "../../../App";
 
 const Card = ({ state, dispatch, item}) => {
 
@@ -17,12 +19,22 @@ const Card = ({ state, dispatch, item}) => {
     setQuantity(quantity > 0 ? quantity - 1 : 0)
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios(url);
+      console.log(response);
+    } catch (error) {
+      
+    }
+  };
+
   return (
     <div className={`${classes.card} `}>
-      <form>
-        <h1 id={item.id}>{item.title}</h1>
+      <form onSubmit={submitHandler}>
+        <h1 id={item.id}>{item.name}</h1>
         <p>
-          cost <span>{item.cost}</span>GP
+          cost <span>{item.index}</span>GP
         </p>
         <div className={`row`}>
           <div

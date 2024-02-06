@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
-const url = "https://www.dnd5eapi.co/api/equipment-categories/adventuring-gear";
+import { url } from "../../App";
 
 const Headers = () => {
   const [equipment, setEquipment] = useState("random equipment");
@@ -11,7 +10,7 @@ const Headers = () => {
       const { data } = await axios(url,{
         headers: 'application/json'
       });
-      console.log(data);
+      setEquipment(data.url);
     } catch (error) {
       console.log(error.response);
     }
