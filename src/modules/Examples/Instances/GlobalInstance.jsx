@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { url } from "../../App";
+import { url } from "../../../App";
 const randomUrl = "https://randomuser.me/api";
 
 const GlobalInstance = () => {

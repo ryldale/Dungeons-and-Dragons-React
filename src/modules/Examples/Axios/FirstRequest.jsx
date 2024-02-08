@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { url } from "../../App";
+import { url } from "../../../App";
 
 const FirstRequest = () => {
     const fetchData = async () => {

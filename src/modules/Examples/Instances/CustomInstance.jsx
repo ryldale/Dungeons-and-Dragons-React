@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import authFetch from "../Axios/CustomAxios";
+import authFetch from "../../Axios/CustomAxios";
 import axios from "axios";
 
 const randomUrl = 'https://randomuser.me/api'

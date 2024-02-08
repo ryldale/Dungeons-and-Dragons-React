@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "../styles/Card.module.css";
-import axios from "axios";
-import { url } from "../../../App";
+// import axios from "axios";
+// import { url } from "../../../App";
 
 const Card = ({ state, dispatch, item}) => {
 
@@ -22,10 +22,10 @@ const Card = ({ state, dispatch, item}) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios(url);
-      console.log(response);
+      // adding the item to the cart
+      console.log(`Adding ${quantity} ${item.name}(s) to cart.`);
     } catch (error) {
-      
+      console.error("Error adding item to cart:", error);
     }
   };
 
@@ -34,7 +34,7 @@ const Card = ({ state, dispatch, item}) => {
       <form onSubmit={submitHandler}>
         <h1 id={item.id}>{item.name}</h1>
         <p>
-          cost <span>{item.index}</span>GP
+        Cost: {item.cost.quantity} {item.cost.unit}
         </p>
         <div className={`row`}>
           <div

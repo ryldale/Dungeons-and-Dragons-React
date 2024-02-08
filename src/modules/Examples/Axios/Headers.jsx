@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { url } from "../../App";
+import { url } from "../../../App";
 
 const Headers = () => {
   const [equipment, setEquipment] = useState("random equipment");
