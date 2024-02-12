@@ -17,6 +17,15 @@ const ItemReducer = (state, action) => {
         itemData: action.data,
       };
     }
+
+    case "addToCart": {
+      return {
+        // Current State
+        ...state,
+        cart: [...state.cart, action.data],
+      };
+    }
+
     default: {
       return state;
     }

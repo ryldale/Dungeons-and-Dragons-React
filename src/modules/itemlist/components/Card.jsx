@@ -1,40 +1,43 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import classes from "../styles/Card.module.css";
 // import axios from "axios";
 // import { url } from "../../../App";
 
-const Card = ({ state, dispatch, item}) => {
-
+const Card = ({ state, dispatch, item }) => {
   const [quantity, setQuantity] = useState(1);
-
+  const id = useId();
+  
   const increment = (e) => {
     // (event) to stop the default action of an element from happening.
     e.preventDefault();
-    setQuantity(quantity + 1)
+    setQuantity(quantity < 5 ? quantity + 1 : 5);
   };
 
   const decrement = (e) => {
     // (e) to stop the default action of an element from happening.
     e.preventDefault();
-    setQuantity(quantity > 0 ? quantity - 1 : 0)
+    setQuantity(quantity > 0 ? quantity - 1 : 0);
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      // adding the item to the cart
-      console.log(`Adding ${quantity} ${item.name}(s) to cart.`);
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
-    }
+    const totalCost = item.cost.quantity * quantity;
+    const newItem = {
+      id: id,
+      name: item.name,
+      totalCost,
+    };
+
+    // console.log(newItem);
+    dispatch({ type: "addToCart", data: newItem });
   };
 
   return (
     <div className={`${classes.card} `}>
       <form onSubmit={submitHandler}>
-        <h1 id={item.id}>{item.name}</h1>
+        <h1 id={id}>{item.name}</h1>
         <p>
-        Cost: {item.cost.quantity} {item.cost.unit}
+          Cost: {item.cost.quantity} {item.cost.unit}
         </p>
         <div className={`row`}>
           <div
@@ -50,7 +53,7 @@ const Card = ({ state, dispatch, item}) => {
                 min="0"
                 max="5"
                 value={quantity}
-                onChange={e => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(e.target.value)}
               />
             </div>
             <div>

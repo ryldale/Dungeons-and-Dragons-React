@@ -5,13 +5,12 @@ import Navbar from "./modules/navbar/components/navbar_section";
 import { useEffect, useReducer } from "react";
 import ItemReducer from "./modules/itemlist/reducer/reducer";
 import { ItemInit } from "./modules/itemlist/reducer/reducerInit";
-// import CustomInstance from "./modules/Instances/CustomInstance";
 import authFetch from "./modules/Axios/CustomAxios";
 
 export const url =
   "/api/equipment-categories/adventuring-gear";
 
-function App() {
+function App(cart) {
   // useReducer Parent - The state and dispatch must be pass along the children
   const [state, dispatch] = useReducer(ItemReducer, ItemInit);
   const fetchData = async () => {
@@ -39,11 +38,10 @@ function App() {
     fetchData();
   }, []);
 
-
   return (
     <div>
       {/* <CustomInstance /> */}
-      <Navbar state={state} dispatch={dispatch} />
+      <Navbar state={state} dispatch={dispatch} cart={cart}/>
       <Routes>
         <Route
           path="/"
